@@ -183,7 +183,7 @@ class _ChaptersScreenState extends State<ChaptersScreen> {
     );
   }
 
-  /*Widget _buildGridItem(
+  Widget _buildGridItem(
     String imagePath,
     String title,
     bool isSelected,
@@ -194,11 +194,15 @@ class _ChaptersScreenState extends State<ChaptersScreen> {
       padding: const EdgeInsets.all(4),
       child: Obx(
         () {
+          final isFav = homeController.favoriteCharacters.contains(title);
+
+          log('Favorite Characters: ${homeController.favoriteCharacters.contains(title)}');
+          //aa false aave che che check it,,,,
           return Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               boxShadow: [
-                isSelected || homeController.favoriteCharacters.contains(title)
+                isSelected || isFav
                     ? BoxShadow(
                         blurRadius: 15,
                         color: ColorConstant.appBlack.withOpacity(0.1),
@@ -223,7 +227,7 @@ class _ChaptersScreenState extends State<ChaptersScreen> {
                   child: IconButton(
                     icon: Icon(
                       Icons.favorite_rounded,
-                      color: homeController.favoriteCharacters.contains(title)
+                      color: isFav
                           ? ColorConstant.appRed
                           : ColorConstant.appWhite.withOpacity(0.6),
                       size: 24,
@@ -246,8 +250,7 @@ class _ChaptersScreenState extends State<ChaptersScreen> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
                           border: Border.all(
-                            color: homeController.favoriteCharacters
-                                    .contains(title)
+                            color: isFav
                                 ? ColorConstant.appWhite
                                 : ColorConstant.appWhite.withOpacity(0.5),
                             style: BorderStyle.solid,
@@ -256,10 +259,10 @@ class _ChaptersScreenState extends State<ChaptersScreen> {
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
                             colors: [
-                              homeController.favoriteCharacters.contains(title)
+                              isFav
                                   ? ColorConstant.appWhite
                                   : ColorConstant.appWhite.withOpacity(0.2),
-                              homeController.favoriteCharacters.contains(title)
+                              isFav
                                   ? ColorConstant.appWhite
                                   : ColorConstant.appWhite.withOpacity(0.5),
                             ],
@@ -270,8 +273,7 @@ class _ChaptersScreenState extends State<ChaptersScreen> {
                             title.toUpperCase(),
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              color: homeController.favoriteCharacters
-                                      .contains(title)
+                              color: isFav
                                   ? ColorConstant.appBlack
                                   : ColorConstant.appWhite,
                               fontWeight: FontWeight.w700,
@@ -290,104 +292,5 @@ class _ChaptersScreenState extends State<ChaptersScreen> {
         },
       ),
     );
-  }*/
-
-
-  Widget _buildGridItem(
-      String imagePath,
-      String title,
-      bool isSelected,
-      bool isFavorite,
-      VoidCallback onFavoritePressed,
-      ) {
-    return Padding(
-      padding: const EdgeInsets.all(4),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: [
-            isSelected || isFavorite
-                ? BoxShadow(
-              blurRadius: 15,
-              color: ColorConstant.appBlack.withOpacity(0.1),
-              offset: const Offset(0, 7),
-            )
-                : const BoxShadow(color: Colors.transparent),
-          ],
-        ),
-        clipBehavior: Clip.antiAlias,
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            Image.asset(
-              imagePath,
-              fit: BoxFit.cover,
-            ),
-            Positioned(
-              top: 2,
-              right: 2,
-              child: IconButton(
-                icon: Icon(
-                  Icons.favorite_rounded,
-                  color: isFavorite
-                      ? ColorConstant.appRed
-                      : ColorConstant.appWhite.withOpacity(0.6),
-                  size: 24,
-                ),
-                onPressed: onFavoritePressed,
-              ),
-            ),
-            Positioned(
-              bottom: 10,
-              right: 5,
-              left: 5,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(15),
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
-                  child: Container(
-                    height: 45,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      border: Border.all(
-                        color: isFavorite
-                            ? ColorConstant.appWhite
-                            : ColorConstant.appWhite.withOpacity(0.5),
-                      ),
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          isFavorite
-                              ? ColorConstant.appWhite
-                              : ColorConstant.appWhite.withOpacity(0.2),
-                          isFavorite
-                              ? ColorConstant.appWhite
-                              : ColorConstant.appWhite.withOpacity(0.5),
-                        ],
-                      ),
-                    ),
-                    child: Text(
-                      title.toUpperCase(),
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: isFavorite
-                            ? ColorConstant.appBlack
-                            : ColorConstant.appWhite,
-                        fontWeight: FontWeight.w700,
-                        fontFamily: 'alexandriaFontBold',
-                        fontSize: 14,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
   }
-
 }
