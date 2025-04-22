@@ -6,6 +6,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:scary_teacher2/constant/image_constant.dart';
 import 'package:scary_teacher2/models/chapter_model.dart';
 import 'package:scary_teacher2/models/character_model.dart';
+import 'package:scary_teacher2/models/hedden_secret_model.dart';
 import 'package:scary_teacher2/models/weapons_model.dart';
 import 'package:scary_teacher2/screens/chapters_screen.dart';
 import 'package:scary_teacher2/screens/characters_screen.dart';
@@ -21,6 +22,7 @@ class HomeController extends GetxController {
   var characterList = <CharacterModel>[].obs;
   var weaponsList = <WeaponsModel>[].obs;
   var chapterList = <ChaptersModel>[].obs;
+  var heddensecretList=<HeddensecretModel>[].obs;
 
   final box = GetStorage();
   var favoriteCharacters = <String>[].obs;
@@ -31,6 +33,7 @@ class HomeController extends GetxController {
     loadCharacters();
     loadWeapons();
     loadChapters();
+    loadheddendata();
     loadFavorites();
   }
 
@@ -212,4 +215,22 @@ class HomeController extends GetxController {
     box.write('favorites', favorites);
     log('Favorites Data -> $favorites');
   }
+
+//   ..............Hedden secret screen....................
+
+  Future<void> loadheddendata() async {
+    try {
+      final String response =
+      await rootBundle.loadString('assets/json/hedden_secrets.json');
+      log("JSON Data Loaded: $response");
+      final List<dynamic> data = json.decode(response);
+
+        heddensecretList.value =
+            data.map((json) => HeddensecretModel.fromJson(json)).toList();
+
+    } catch (e) {
+      log('Error loading JSON: $e');
+    }
+  }
+
 }

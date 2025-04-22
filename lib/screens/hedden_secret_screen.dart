@@ -1,11 +1,10 @@
-import 'dart:convert';
-import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:scary_teacher2/constant/appappbar.dart';
+import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:scary_teacher2/constant/appAppbar.dart';
 import 'package:scary_teacher2/constant/color_constant.dart';
 import 'package:scary_teacher2/constant/image_constant.dart';
-import 'package:scary_teacher2/models/hedden_secret_model.dart';
+import 'package:scary_teacher2/controller/home_controller.dart';
 import 'package:scary_teacher2/screens/hedden_secrets_detail.dart';
 
 class HeddenSecretScreen extends StatefulWidget {
@@ -16,6 +15,9 @@ class HeddenSecretScreen extends StatefulWidget {
 }
 
 class _HeddenSecretScreenState extends State<HeddenSecretScreen> {
+  final HomeController homeController = Get.put(HomeController());
+
+/*
   int? selectedIndex;
   List<HeddensecretModel> heddensecretList = [];
 
@@ -39,6 +41,7 @@ class _HeddenSecretScreenState extends State<HeddenSecretScreen> {
       log('Error loading JSON: $e');
     }
   }
+*/
 
   @override
   Widget build(BuildContext context) {
@@ -54,16 +57,15 @@ class _HeddenSecretScreenState extends State<HeddenSecretScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // const SizedBox(height: 40),
-              AppAppbar(text: 'Hedden Secrets'),
+              const AppAppbar(text: 'Hedden Secrets'),
               const SizedBox(height: 10),
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
-                  child: heddensecretList.isEmpty
-                      ? const Center(
-                          child: CircularProgressIndicator(
-                            color: ColorConstant.appWhite,
-                          ),
+                  child: homeController.heddensecretList.isEmpty
+                      ? Center(
+                          child: LoadingAnimationWidget.hexagonDots(
+                              color: ColorConstant.appWhite, size: 24),
                         )
                       : GridView.builder(
                           padding: const EdgeInsets.only(top: 5, bottom: 10),
@@ -74,14 +76,15 @@ class _HeddenSecretScreenState extends State<HeddenSecretScreen> {
                             mainAxisSpacing: 10,
                             childAspectRatio: 0.75,
                           ),
-                          itemCount: heddensecretList.length,
+                          itemCount: homeController.heddensecretList.length,
                           itemBuilder: (context, index) {
-                            final heddendata = heddensecretList[index];
+                            final heddendata =
+                                homeController.heddensecretList[index];
 
                             return GestureDetector(
                               onTap: () {
                                 setState(() {
-                                  selectedIndex = index;
+                                  homeController.selectedIndex.value = index;
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -95,7 +98,7 @@ class _HeddenSecretScreenState extends State<HeddenSecretScreen> {
                               child: _buildGridItem(
                                 heddendata.image ?? '',
                                 heddendata.name ?? '',
-                                index == selectedIndex,
+                                index == homeController.selectedIndex.value,
                               ),
                             );
                           },
