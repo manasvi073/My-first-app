@@ -75,7 +75,7 @@ class HomeController extends GetxController {
     },
   ];
 
-  // ................Characters Screen Api...................
+  // ................Characters Screen...................
 
   Future<void> loadCharacters() async {
     try {
@@ -131,7 +131,7 @@ class HomeController extends GetxController {
     log('Favorites Data -> $favorites');
   }
 
-  // ................Weapons Screen Api...................
+  // ................Weapons Screen...................
 
   Future<void> loadWeapons() async {
     try {
@@ -172,7 +172,7 @@ class HomeController extends GetxController {
     log('Favorites Data -> $favorites');
   }
 
-// ................chapters Screen Api...................
+// ................chapters Screen...................
 
   Future<void> loadChapters() async {
     try {

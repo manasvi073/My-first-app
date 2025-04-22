@@ -1,15 +1,10 @@
-import 'dart:convert';
-import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:scary_teacher2/constant/appappbar.dart';
+import 'package:scary_teacher2/constant/appAppbar.dart';
 import 'package:scary_teacher2/constant/color_constant.dart';
 import 'package:scary_teacher2/constant/image_constant.dart';
 import 'package:scary_teacher2/controller/home_controller.dart';
-import 'package:scary_teacher2/models/weapons_model.dart';
 import 'package:scary_teacher2/screens/weapons_detail_screen.dart';
 
 class WeaponsScreen extends StatefulWidget {

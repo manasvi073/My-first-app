@@ -1,16 +1,11 @@
-import 'dart:convert';
-import 'dart:developer';
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:scary_teacher2/constant/appappbar.dart';
+import 'package:scary_teacher2/constant/appAppbar.dart';
 import 'package:scary_teacher2/constant/color_constant.dart';
 import 'package:scary_teacher2/constant/image_constant.dart';
 import 'package:scary_teacher2/controller/home_controller.dart';
-import 'package:scary_teacher2/models/chapter_model.dart';
 import 'package:scary_teacher2/screens/chapter_detail_screen.dart';
 
 class ChaptersScreen extends StatefulWidget {
@@ -24,7 +19,6 @@ class _ChaptersScreenState extends State<ChaptersScreen> {
   final HomeController homeController = Get.put(HomeController());
 
   // int? selectedIndex;
-
   // List<ChaptersModel> chapterList = [];
   // final box = GetStorage();
   // List<String> favoriteCharacters = [];
@@ -194,14 +188,12 @@ class _ChaptersScreenState extends State<ChaptersScreen> {
       padding: const EdgeInsets.all(4),
       child: Obx(
         () {
-          final isFav = homeController.favoriteCharacters.contains(title);
-
 
           return Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               boxShadow: [
-                isSelected || isFav
+                isSelected || homeController.favoriteCharacters.contains(title)
                     ? BoxShadow(
                         blurRadius: 15,
                         color: ColorConstant.appBlack.withOpacity(0.1),
@@ -220,20 +212,36 @@ class _ChaptersScreenState extends State<ChaptersScreen> {
                   imagePath,
                   fit: BoxFit.cover,
                 ),
-                Positioned(
+                Obx((){
+                  return Positioned(
+                    top: 12,
+                    right: 12,
+                    child: GestureDetector(
+                      onTap: onFavoritePressed,
+                      child: Icon(
+                        Icons.favorite_rounded,
+                        color: homeController.favoriteCharacters.contains(title)
+                            ? ColorConstant.appRed
+                            : ColorConstant.appWhite.withOpacity(0.6),
+                        size: 24,
+                      ),
+                    ),
+                  );
+                }),
+               /* Positioned(
                   top: 2,
                   right: 2,
                   child: IconButton(
                     icon: Icon(
                       Icons.favorite_rounded,
-                      color: isFav
+                      color: homeController.favoriteCharacters.contains(title)
                           ? ColorConstant.appRed
                           : ColorConstant.appWhite.withOpacity(0.6),
                       size: 24,
                     ),
                     onPressed: onFavoritePressed,
                   ),
-                ),
+                ),*/
                 Positioned(
                   bottom: 10,
                   right: 5,
@@ -249,7 +257,7 @@ class _ChaptersScreenState extends State<ChaptersScreen> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
                           border: Border.all(
-                            color: isFav
+                            color: homeController.favoriteCharacters.contains(title)
                                 ? ColorConstant.appWhite
                                 : ColorConstant.appWhite.withOpacity(0.5),
                             style: BorderStyle.solid,
@@ -258,10 +266,10 @@ class _ChaptersScreenState extends State<ChaptersScreen> {
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
                             colors: [
-                              isFav
+                              homeController.favoriteCharacters.contains(title)
                                   ? ColorConstant.appWhite
                                   : ColorConstant.appWhite.withOpacity(0.2),
-                              isFav
+                              homeController.favoriteCharacters.contains(title)
                                   ? ColorConstant.appWhite
                                   : ColorConstant.appWhite.withOpacity(0.5),
                             ],
@@ -272,7 +280,7 @@ class _ChaptersScreenState extends State<ChaptersScreen> {
                             title.toUpperCase(),
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              color: isFav
+                              color: homeController.favoriteCharacters.contains(title)
                                   ? ColorConstant.appBlack
                                   : ColorConstant.appWhite,
                               fontWeight: FontWeight.w700,
