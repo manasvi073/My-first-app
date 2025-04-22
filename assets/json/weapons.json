@@ -1,0 +1,80 @@
+[
+  {
+    "name": "Firecrackers",
+    "image": "assets/images/firecrackers.png",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque non eleifend enim, eget dictum risus. Ut risus leo, ultricies at quam nec, luctus placerat magna. Nullam felis erat, pulvinar at rhoncus ac, fringilla vitae ipsum. Curabitur sodales finibus leo, sed porttitor massa facilisis nec. Donec et eleifend dui. Duis elementum tellus vitae interdum ullamcorper.",
+    "stats": {
+      "anger": 80,
+      "stamina": 60,
+      "humor": 40
+    }
+  },
+  {
+    "name": "Glue",
+    "image": "assets/images/glue.png",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque non eleifend enim, eget dictum risus. Ut risus leo, ultricies at quam nec, luctus placerat magna. Nullam felis erat, pulvinar at rhoncus ac, fringilla vitae ipsum. Curabitur sodales finibus leo, sed porttitor massa facilisis nec. Donec et eleifend dui. Duis elementum tellus vitae interdum ullamcorper.",
+    "stats": {
+      "anger": 20,
+      "stamina": 90,
+      "humor": 60
+    }
+  },
+  {
+    "name": "Paint Buckets",
+    "image": "assets/images/paint_buckets.png",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque non eleifend enim, eget dictum risus. Ut risus leo, ultricies at quam nec, luctus placerat magna. Nullam felis erat, pulvinar at rhoncus ac, fringilla vitae ipsum. Curabitur sodales finibus leo, sed porttitor massa facilisis nec. Donec et eleifend dui. Duis elementum tellus vitae interdum ullamcorper.",
+    "stats": {
+      "anger": 50,
+      "stamina": 70,
+      "humor": 60
+    }
+  },
+  {
+    "name": "Marbles",
+    "image": "assets/images/marbles.png",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque non eleifend enim, eget dictum risus. Ut risus leo, ultricies at quam nec, luctus placerat magna. Nullam felis erat, pulvinar at rhoncus ac, fringilla vitae ipsum. Curabitur sodales finibus leo, sed porttitor massa facilisis nec. Donec et eleifend dui. Duis elementum tellus vitae interdum ullamcorper.",
+    "stats": {
+      "anger": 50,
+      "stamina": 30,
+      "humor": 90
+    }
+  },
+  {
+    "name": "Whoopee Cushions",
+    "image": "assets/images/whoopee_cushions.png",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque non eleifend enim, eget dictum risus. Ut risus leo, ultricies at quam nec, luctus placerat magna. Nullam felis erat, pulvinar at rhoncus ac, fringilla vitae ipsum. Curabitur sodales finibus leo, sed porttitor massa facilisis nec. Donec et eleifend dui. Duis elementum tellus vitae interdum ullamcorper.",
+    "stats": {
+      "anger": 90,
+      "stamina": 30,
+      "humor": 60
+    }
+  },
+  {
+    "name": "Cages & Nets",
+    "image": "assets/images/cages_nets.png",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque non eleifend enim, eget dictum risus. Ut risus leo, ultricies at quam nec, luctus placerat magna. Nullam felis erat, pulvinar at rhoncus ac, fringilla vitae ipsum. Curabitur sodales finibus leo, sed porttitor massa facilisis nec. Donec et eleifend dui. Duis elementum tellus vitae interdum ullamcorper.",
+    "stats": {
+      "anger": 55,
+      "stamina": 77,
+      "humor": 66
+    }
+  },{
+    "name": "Insects & Animals",
+    "image": "assets/images/insects_animals.png",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque non eleifend enim, eget dictum risus. Ut risus leo, ultricies at quam nec, luctus placerat magna. Nullam felis erat, pulvinar at rhoncus ac, fringilla vitae ipsum. Curabitur sodales finibus leo, sed porttitor massa facilisis nec. Donec et eleifend dui. Duis elementum tellus vitae interdum ullamcorper.",
+    "stats": {
+      "anger": 40,
+      "stamina": 50,
+      "humor": 60
+    }
+  },{
+    "name": "Food Items",
+    "image": "assets/images/food_items.png",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque non eleifend enim, eget dictum risus. Ut risus leo, ultricies at quam nec, luctus placerat magna. Nullam felis erat, pulvinar at rhoncus ac, fringilla vitae ipsum. Curabitur sodales finibus leo, sed porttitor massa facilisis nec. Donec et eleifend dui. Duis elementum tellus vitae interdum ullamcorper.",
+    "stats": {
+      "anger": 20,
+      "stamina": 90,
+      "humor": 50
+    }
+  }
+]

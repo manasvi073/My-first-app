@@ -1,0 +1,78 @@
+[
+  {
+    "name": "MISS T",
+    "image": "assets/images/large_missT.png",
+    "largeImage": "assets/images/missT1.png",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque non eleifend enim, eget dictum risus. Ut risus leo, ultricies at quam nec, luctus placerat magna. Nullam felis erat, pulvinar at rhoncus ac, fringilla vitae ipsum. Curabitur sodales finibus leo, sed porttitor massa facilisis nec. Donec et eleifend dui. Duis elementum tellus vitae interdum ullamcorper.",
+    "stats": {
+      "anger": 80,
+      "stamina": 60,
+      "humor": 40
+    }
+  },
+  {
+    "name": "NICK",
+    "image": "assets/images/nick.png",
+    "largeImage": "assets/images/nick.png",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque non eleifend enim, eget dictum risus. Ut risus leo, ultricies at quam nec, luctus placerat magna. Nullam felis erat, pulvinar at rhoncus ac, fringilla vitae ipsum. Curabitur sodales finibus leo, sed porttitor massa facilisis nec. Donec et eleifend dui. Duis elementum tellus vitae interdum ullamcorper.",
+    "stats": {
+      "anger": 50,
+      "stamina": 70,
+      "humor": 60
+    }
+  },
+  {
+    "name": "Tani",
+    "image": "assets/images/tani.png",
+    "largeImage": "assets/images/tani.png",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque non eleifend enim, eget dictum risus. Ut risus leo, ultricies at quam nec, luctus placerat magna. Nullam felis erat, pulvinar at rhoncus ac, fringilla vitae ipsum. Curabitur sodales finibus leo, sed porttitor massa facilisis nec. Donec et eleifend dui. Duis elementum tellus vitae interdum ullamcorper.",
+    "stats": {
+      "anger": 50,
+      "stamina": 70,
+      "humor": 60
+    }
+  },
+  {
+    "name": "Francis",
+    "image": "assets/images/francis.png",
+    "largeImage": "assets/images/francis.png",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque non eleifend enim, eget dictum risus. Ut risus leo, ultricies at quam nec, luctus placerat magna. Nullam felis erat, pulvinar at rhoncus ac, fringilla vitae ipsum. Curabitur sodales finibus leo, sed porttitor massa facilisis nec. Donec et eleifend dui. Duis elementum tellus vitae interdum ullamcorper.",
+    "stats": {
+      "anger": 50,
+      "stamina": 70,
+      "humor": 60
+    }
+  },
+  {
+    "name": "Miss T's Pets",
+    "image": "assets/images/pets.png",
+    "largeImage": "assets/images/pets.png",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque non eleifend enim, eget dictum risus. Ut risus leo, ultricies at quam nec, luctus placerat magna. Nullam felis erat, pulvinar at rhoncus ac, fringilla vitae ipsum. Curabitur sodales finibus leo, sed porttitor massa facilisis nec. Donec et eleifend dui. Duis elementum tellus vitae interdum ullamcorper.",
+    "stats": {
+      "anger": 50,
+      "stamina": 70,
+      "humor": 60
+    }
+  },
+  {
+    "name": "Students",
+    "image": "assets/images/students.png",
+    "largeImage": "assets/images/students.png",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque non eleifend enim, eget dictum risus. Ut risus leo, ultricies at quam nec, luctus placerat magna. Nullam felis erat, pulvinar at rhoncus ac, fringilla vitae ipsum. Curabitur sodales finibus leo, sed porttitor massa facilisis nec. Donec et eleifend dui. Duis elementum tellus vitae interdum ullamcorper.",
+    "stats": {
+      "anger": 50,
+      "stamina": 70,
+      "humor": 60
+    }
+  },{
+    "name": "Neighbors and Delivery People",
+    "image": "assets/images/neighbors.png",
+    "largeImage": "assets/images/neighbors.png",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque non eleifend enim, eget dictum risus. Ut risus leo, ultricies at quam nec, luctus placerat magna. Nullam felis erat, pulvinar at rhoncus ac, fringilla vitae ipsum. Curabitur sodales finibus leo, sed porttitor massa facilisis nec. Donec et eleifend dui. Duis elementum tellus vitae interdum ullamcorper.",
+    "stats": {
+      "anger": 50,
+      "stamina": 70,
+      "humor": 60
+    }
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Spin & Win",
+    "image": "assets/images/spin.png",
+    "Data": [
+      {
+        "categoryName": "Characters",
+        "categoryImage": "assets/images/spiner.png"
+      },
+      {
+        "categoryName": "Weapons",
+        "categoryImage": "assets/images/weapons_spin.png"
+      }
+    ]
+  },
+  {
+    "name": "Scratch Card",
+    "image": "assets/images/card.png"
+  }
+]
