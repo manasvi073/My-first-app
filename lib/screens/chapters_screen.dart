@@ -196,8 +196,7 @@ class _ChaptersScreenState extends State<ChaptersScreen> {
         () {
           final isFav = homeController.favoriteCharacters.contains(title);
 
-          log('Favorite Characters: ${homeController.favoriteCharacters.contains(title)}');
-          //aa false aave che che check it,,,,
+
           return Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
