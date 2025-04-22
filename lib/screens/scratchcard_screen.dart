@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:scary_teacher2/constant/appappbar.dart';
+import 'package:scary_teacher2/constant/appAppbar.dart';
 import 'package:scary_teacher2/constant/image_constant.dart';
 import 'package:scary_teacher2/models/reward_model.dart';
-
 
 class ScratchcardScreen extends StatelessWidget {
   final RewardModel rewardData;
@@ -22,7 +21,6 @@ class ScratchcardScreen extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // const SizedBox(height: 40),
               AppAppbar(text: rewardData.name!),
               const SizedBox(height: 20),
               Center(

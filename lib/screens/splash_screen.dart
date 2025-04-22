@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:scary_teacher2/constant/image_constant.dart';
 import 'package:scary_teacher2/screens/onboarding_screen.dart';
 
-
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 

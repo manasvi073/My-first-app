@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:scary_teacher2/constant/appappbar.dart';
+import 'package:scary_teacher2/constant/appAppbar.dart';
 import 'package:scary_teacher2/constant/color_constant.dart';
 import 'package:scary_teacher2/constant/image_constant.dart';
 import 'package:scary_teacher2/models/hedden_secret_model.dart';
@@ -49,7 +49,6 @@ class _HeddensecretsDetailState extends State<HeddensecretsDetail> {
           ),
           Column(
             children: [
-              // const SizedBox(height: 40),
               AppAppbar(text: widget.heddensecretModel.name!),
               Expanded(
                 child: SingleChildScrollView(
@@ -77,7 +76,8 @@ class _HeddensecretsDetailState extends State<HeddensecretsDetail> {
                             children: [
                               Center(
                                 child: Image.asset(
-                                  widget.heddensecretModel.largeImage.toString(),
+                                  widget.heddensecretModel.largeImage
+                                      .toString(),
                                   height: 200,
                                   width: 200,
                                   fit: BoxFit.contain,

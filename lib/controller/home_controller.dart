@@ -1,8 +1,10 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:get/get_rx/get_rx.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:scary_teacher2/constant/image_constant.dart';
 import 'package:scary_teacher2/models/chapter_model.dart';
@@ -14,14 +16,15 @@ import 'package:scary_teacher2/models/weapons_model.dart';
 import 'package:scary_teacher2/screens/chapters_screen.dart';
 import 'package:scary_teacher2/screens/characters_screen.dart';
 import 'package:scary_teacher2/screens/costume_screen.dart';
+import 'package:scary_teacher2/screens/getstarted_screen.dart';
 import 'package:scary_teacher2/screens/hedden_secret_screen.dart';
 import 'package:scary_teacher2/screens/rewards_screen.dart';
 import 'package:scary_teacher2/screens/weapons_screen.dart';
 
 class HomeController extends GetxController {
-  // int? selectedIndex;
-
   RxInt selectedIndex = (-1).obs;
+  RxInt currentIndex = 0.obs;
+  PageController pageController = PageController();
 
   var characterList = <CharacterModel>[].obs;
   var weaponsList = <WeaponsModel>[].obs;
@@ -30,10 +33,10 @@ class HomeController extends GetxController {
   var rewardList = <RewardModel>[].obs;
   var costumeList = <CostumeModel>[].obs;
 
-  // var rewardListData=<RewardData>[].obs;
-
   final box = GetStorage();
   var favoriteCharacters = <String>[].obs;
+
+  bool isNotificationOn = true;
 
   @override
   void onInit() {
@@ -45,7 +48,6 @@ class HomeController extends GetxController {
     loadRewardData();
     loadCostumeData();
     loadFavorites();
-    // rewardListData = widget.rewardData.data ?? [];
   }
 
   void onItemTap(int index) {
@@ -54,13 +56,74 @@ class HomeController extends GetxController {
     Get.to(screenData);
   }
 
+  // ..................onboarding Screen.............
+
+  final List<Map<String, String>> onboardingData = [
+    {
+      'image': ImageConstant.appOnboarding1Logo,
+      'title': 'Meet the Cast!',
+      'description':
+          'Discover the mischievous teacher and her tricky students. Each character has unique skills—use them wisely!',
+    },
+    {
+      'image': ImageConstant.appOnboarding2Logo,
+      'title': 'Gadgets & Traps!',
+      'description':
+          'From slingshots to stink bombs, explore fun weapons to prank the scary teacher. Choose the best tool for the job!',
+    },
+    {
+      'image': ImageConstant.appOnboarding3Logo,
+      'title': 'Dress to Trick!',
+      'description':
+          'Unlock crazy costumes to disguise yourself. Blend in or stand out-your choice, your prank!',
+    },
+  ];
+
+  void nextPage() {
+    if (currentIndex < onboardingData.length - 1) {
+      pageController.animateToPage(
+        currentIndex.value + 1,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
+    } else {
+      Get.off(() => const GetStartedScreen());
+    }
+  }
+
+  // ..............Setting Screen......................
+
+  final List<Map<String, dynamic>> settingsOptions = [
+    {
+      'icon': ImageConstant.appNotifications,
+      'title': 'Notifications',
+      'isToggle': true,
+    },
+    {
+      'icon': ImageConstant.appFavorite,
+      'title': 'Favorites',
+    },
+    {
+      'icon': ImageConstant.appShare,
+      'title': 'Share Us',
+    },
+    {
+      'icon': ImageConstant.appRate,
+      'title': 'Rate Us',
+    },
+    {
+      'icon': ImageConstant.appPrivacy,
+      'title': 'Privacy Policy',
+    }
+  ];
+
   // ................Home Screen Data...................
 
   final List<Map<String, dynamic>> items = [
     {
       'image': ImageConstant.appCharacter,
       'title': 'Characters',
-      'screen': () => const CharactersScreen(),
+      'screen': () => CharactersScreen(),
     },
     {
       'image': ImageConstant.appWeapons,
@@ -294,7 +357,6 @@ class HomeController extends GetxController {
       favorites.add(favoriteItem);
       favoriteCharacters.add(costumeFav.name!);
     }
-
     box.write('favorites', favorites);
     log('Favorites Data -> $favorites');
   }

@@ -15,8 +15,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final HomeController homeController = Get.put(HomeController());
 
-  // int? selectedIndex;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,7 +83,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: _buildGridItem(
                           homeController.items[index]['image']!,
                           homeController.items[index]['title']!,
-                          // index == selectedIndex,
                           index == homeController.selectedIndex.value,
                         ),
                       );

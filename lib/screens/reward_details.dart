@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:scary_teacher2/constant/appappbar.dart';
+import 'package:scary_teacher2/constant/appAppbar.dart';
 import 'package:scary_teacher2/constant/color_constant.dart';
 import 'package:scary_teacher2/constant/image_constant.dart';
 import 'package:scary_teacher2/controller/home_controller.dart';
@@ -41,9 +41,7 @@ class _RewardDetailsState extends State<RewardDetails> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // const SizedBox(height: 40),
               AppAppbar(text: '${widget.rewardData.name}'),
-              // const SizedBox(height: 20),
               Expanded(
                 child: rewardList.isEmpty
                     ? Center(
@@ -52,7 +50,6 @@ class _RewardDetailsState extends State<RewardDetails> {
                     : ListView.builder(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         itemCount: rewardList.length,
-                        // itemCount: rewardList.length,
                         itemBuilder: (context, index) {
                           final rewards = rewardList[index];
 
@@ -97,11 +94,9 @@ class _RewardDetailsState extends State<RewardDetails> {
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
-                                // crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   const SizedBox(width: 5),
                                   Text(
-                                    // rewardList[index]['title']!.toUpperCase(),
                                     rewards.categoryName!.toUpperCase(),
                                     style: TextStyle(
                                       color: isSelected

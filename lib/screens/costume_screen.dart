@@ -17,80 +17,6 @@ class CostumeScreen extends StatefulWidget {
 class _CostumeScreenState extends State<CostumeScreen> {
   final HomeController homeController = Get.put(HomeController());
 
-  /*int? selectedIndex;
-  List<CostumeModel> costumeList = [];
-  final box = GetStorage();
-  List<String> favoriteCharacters = [];*/
-
-  /*
-  @override
-  void initState() {
-    super.initState();
-    loadCostumeData();
-    loadFavorites();
-  }
-
-  Future<void> loadCostumeData() async {
-    try {
-      final String response =
-          await rootBundle.loadString('assets/json/costumes.json');
-      log("JSON Data Loaded: $response");
-      final List<dynamic> data = json.decode(response);
-      setState(() {
-        costumeList = data.map((json) => CostumeModel.fromJson(json)).toList();
-      });
-    } catch (e) {
-      log('Error loading JSON: $e');
-    }
-  }
-
-  void loadFavorites() {
-    List<dynamic>? storedFavorites = box.read<List<dynamic>>('favorites');
-
-    if (storedFavorites != null) {
-      favoriteCharacters = storedFavorites.map((e) {
-        if (e is Map<String, dynamic>) {
-          return e['name'] as String;
-        } else if (e is String) {
-          return e;
-        }
-        return '';
-      }).toList();
-    } else {
-      favoriteCharacters = [];
-    }
-
-    setState(() {});
-  }
-
-  void toggleFavorite(CostumeModel costumeFav) {
-    Map<String, dynamic> favoriteItem = {
-      "name": costumeFav.name,
-      "image": costumeFav.image,
-    };
-
-    List<Map<String, dynamic>> favorites =
-        (box.read<List<dynamic>>('favorites') ?? [])
-            .map((e) => Map<String, dynamic>.from(e))
-            .toList();
-
-    int index = favorites.indexWhere((item) => item['name'] == costumeFav.name);
-
-    setState(() {
-      if (index != -1) {
-        favorites.removeAt(index);
-        favoriteCharacters.remove(costumeFav.name);
-      } else {
-        favorites.add(favoriteItem);
-        favoriteCharacters.add(costumeFav.name!);
-      }
-
-      box.write('favorites', favorites);
-      log('Favorites Data -> $favorites');
-    });
-  }
-*/
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -217,9 +143,7 @@ class _CostumeScreenState extends State<CostumeScreen> {
                           fontSize: 14,
                           fontWeight: FontWeight.w700,
                           fontFamily: 'alexandriaFontBold',
-                          color: /* isSelected
-                            ? ColorConstant.appBlack
-                            : */
+                          color:
                               isFav
                                   ? ColorConstant.appBlack
                                   : ColorConstant.appWhite,

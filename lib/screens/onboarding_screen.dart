@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:scary_teacher2/constant/color_constant.dart';
 import 'package:scary_teacher2/constant/image_constant.dart';
-import 'package:scary_teacher2/screens/getstarted_screen.dart';
-
+import 'package:scary_teacher2/controller/home_controller.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -12,46 +12,7 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
-  final PageController _pageController = PageController();
-  int _currentIndex = 0;
-
-  final List<Map<String, String>> onboardingData = [
-    {
-      'image': ImageConstant.appOnboarding1Logo,
-      'title': 'Meet the Cast!',
-      'description':
-          'Discover the mischievous teacher and her tricky students. Each character has unique skills—use them wisely!',
-    },
-    {
-      'image': ImageConstant.appOnboarding2Logo,
-      'title': 'Gadgets & Traps!',
-      'description':
-          'From slingshots to stink bombs, explore fun weapons to prank the scary teacher. Choose the best tool for the job!',
-    },
-    {
-      'image': ImageConstant.appOnboarding3Logo,
-      'title': 'Dress to Trick!',
-      'description':
-          'Unlock crazy costumes to disguise yourself. Blend in or stand out-your choice, your prank!',
-    },
-  ];
-
-  void _nextPage() {
-    if (_currentIndex < onboardingData.length - 1) {
-      _pageController.animateToPage(
-        _currentIndex + 1,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-      );
-    } else {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const GetStartedScreen(),
-        ),
-      );
-    }
-  }
+  final HomeController homeController = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
@@ -64,15 +25,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             fit: BoxFit.cover,
           ),
           PageView.builder(
-            controller: _pageController,
-            itemCount: onboardingData.length,
+            controller: homeController.pageController,
+            itemCount: homeController.onboardingData.length,
             onPageChanged: (index) {
               setState(() {
-                _currentIndex = index;
+                homeController.currentIndex.value = index;
               });
             },
             itemBuilder: (context, index) {
-              final data = onboardingData[index];
+              final data = homeController.onboardingData[index];
               return SingleChildScrollView(
                 child: Column(
                   children: [
@@ -111,7 +72,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     ),
                     const SizedBox(height: 10),
                     GestureDetector(
-                      onTap: _nextPage,
+                      onTap: () => homeController.nextPage(),
                       child: Image.asset(
                         ImageConstant.appNextButton,
                       ),

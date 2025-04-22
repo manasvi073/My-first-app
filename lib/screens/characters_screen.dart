@@ -7,91 +7,13 @@ import 'package:scary_teacher2/constant/image_constant.dart';
 import 'package:scary_teacher2/controller/home_controller.dart';
 import 'package:scary_teacher2/screens/characters_details_screen.dart';
 
-class CharactersScreen extends StatefulWidget {
-  const CharactersScreen({super.key});
-
-  @override
-  State<CharactersScreen> createState() => _CharactersScreenState();
-}
-
-class _CharactersScreenState extends State<CharactersScreen> {
-  // int? selectedIndex;
-  // List<CharacterModel> characterList = [];
-  // final box = GetStorage();
-  // List<String> favoriteCharacters = [];
+class CharactersScreen extends StatelessWidget {
   final HomeController homeController = Get.put(HomeController());
 
-  @override
-  void initState() {
-    super.initState();
-    // loadCharacters();
-    // loadFavorites();
-  }
-
-  /*Future<void> loadCharacters() async {
-    try {
-      final String response =
-          await rootBundle.loadString('assets/json/character.json');
-      log("JSON Data Loaded: $response");
-      final List<dynamic> data = json.decode(response);
-      setState(() {
-        characterList =
-            data.map((json) => CharacterModel.fromJson(json)).toList();
-      });
-    } catch (e) {
-      log('Error loading JSON: $e');
-    }
-  }
-*/
-
-/*
-  void loadFavorites() {
-    List<dynamic>? storedFavorites = box.read<List<dynamic>>('favorites');
-    if (storedFavorites != null) {
-      favoriteCharacters = storedFavorites.map((e) {
-        if (e is Map<String, dynamic>) {
-          return e['name'] as String;
-        } else if (e is String) {
-          return e;
-        }
-        return '';
-      }).toList();
-    } else {
-      favoriteCharacters = [];
-    }
-  }
-
-  void toggleFavorite(CharacterModel weapon) {
-    Map<String, dynamic> favoriteItem = {
-      "name": weapon.name,
-      "image": weapon.image,
-    };
-
-    List<Map<String, dynamic>> favorites =
-        (box.read<List<dynamic>>('favorites') ?? [])
-            .map((e) => Map<String, dynamic>.from(e))
-            .toList();
-
-    int index = favorites.indexWhere((item) => item['name'] == weapon.name);
-
-    setState(() {
-      if (index != -1) {
-        favorites.removeAt(index);
-        favoriteCharacters.remove(weapon.name);
-      } else {
-        favorites.add(favoriteItem);
-        favoriteCharacters.add(weapon.name!);
-      }
-
-      box.write('favorites', favorites);
-      log('Favorites Data -> $favorites');
-    });
-  }
-*/
+  CharactersScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: Stack(
         fit: StackFit.expand,
@@ -213,16 +135,6 @@ class _CharactersScreenState extends State<CharactersScreen> {
                           ),
                         ),
                       ),
-                      /*GestureDetector(
-                    onTap: onFavoritePressed,
-                    child: Icon(
-                      Icons.favorite_rounded,
-                      color: isFavorite
-                          ? ColorConstant.appRed
-                          : ColorConstant.appWhite.withOpacity(0.6),
-                      size: 24,
-                    ),
-                  ),*/
                       GestureDetector(
                         onTap: onFavoritePressed,
                         child: Icon(

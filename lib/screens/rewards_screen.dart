@@ -18,29 +18,6 @@ class RewardsScreen extends StatefulWidget {
 class _RewardsScreenState extends State<RewardsScreen> {
   final HomeController homeController = Get.put(HomeController());
 
-/*
-  int? selectedIndex;
-  List<RewardModel> rewardList = [];
-
-  @override
-  void initState() {
-    super.initState();
-    loadRewardData();
-  }
-
-  Future<void> loadRewardData() async {
-    try {
-      final String response =
-          await rootBundle.loadString('assets/json/rewards.json');
-      final List<dynamic> data = json.decode(response);
-      setState(() {
-        rewardList = data.map((json) => RewardModel.fromJson(json)).toList();
-      });
-    } catch (e) {
-      Fluttertoast.showToast(msg: 'Error loading JSON: $e');
-    }
-  }
-*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,8 +57,6 @@ class _RewardsScreenState extends State<RewardsScreen> {
                                     MaterialPageRoute(
                                       builder: (context) =>
                                           RewardDetails(rewardData: rewards),
-                                      /*builder: (context) =>
-                                        rewardList[index]['screen'],*/
                                     ),
                                   );
                                 } else {
@@ -111,7 +86,6 @@ class _RewardsScreenState extends State<RewardsScreen> {
                                           color: ColorConstant.appBlack
                                               .withOpacity(0.1),
                                           spreadRadius: 0,
-                                          // blurStyle: BlurStyle.normal,
                                           offset: const Offset(0, 7))
                                       : const BoxShadow(
                                           color: Colors.transparent,
@@ -121,12 +95,10 @@ class _RewardsScreenState extends State<RewardsScreen> {
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
-                                // crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   const SizedBox(width: 1),
                                   Text(
                                     rewards.name!.toUpperCase(),
-                                    // rewardList[index]['title']!.toUpperCase(),
                                     style: TextStyle(
                                       color: isSelected
                                           ? ColorConstant.appBlack

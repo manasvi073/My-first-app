@@ -17,32 +17,6 @@ class HeddenSecretScreen extends StatefulWidget {
 class _HeddenSecretScreenState extends State<HeddenSecretScreen> {
   final HomeController homeController = Get.put(HomeController());
 
-/*
-  int? selectedIndex;
-  List<HeddensecretModel> heddensecretList = [];
-
-  @override
-  void initState() {
-    super.initState();
-    loadheddendata();
-  }
-
-  Future<void> loadheddendata() async {
-    try {
-      final String response =
-          await rootBundle.loadString('assets/json/hedden_secrets.json');
-      log("JSON Data Loaded: $response");
-      final List<dynamic> data = json.decode(response);
-      setState(() {
-        heddensecretList =
-            data.map((json) => HeddensecretModel.fromJson(json)).toList();
-      });
-    } catch (e) {
-      log('Error loading JSON: $e');
-    }
-  }
-*/
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,7 +30,6 @@ class _HeddenSecretScreenState extends State<HeddenSecretScreen> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // const SizedBox(height: 40),
               const AppAppbar(text: 'Hedden Secrets'),
               const SizedBox(height: 10),
               Expanded(
@@ -164,9 +137,6 @@ class _HeddenSecretScreenState extends State<HeddenSecretScreen> {
                   alignment: Alignment.centerRight,
                   child: Image.asset(
                     imagePath,
-                    // height: 200,
-                    // width: 280,
-                    // width: double.infinity,
                     fit: BoxFit.contain,
                   ),
                 ),
