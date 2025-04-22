@@ -40,7 +40,6 @@ class CharactersScreen extends StatelessWidget {
                           padding: const EdgeInsets.only(top: 5, bottom: 10),
                           gridDelegate:
                               const SliverGridDelegateWithFixedCrossAxisCount(
-                            // crossAxisCount: crossAxisCount,
                             crossAxisCount: 2,
                             crossAxisSpacing: 12,
                             mainAxisSpacing: 10,
@@ -68,7 +67,6 @@ class CharactersScreen extends StatelessWidget {
                               child: _buildGridItem(
                                 character.image ?? '',
                                 character.name ?? '',
-                                // index == selectedIndex,
                                 index == homeController.selectedIndex.value,
                                 isFavorite,
                                 () => homeController.toggleFavorite(character),
