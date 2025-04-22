@@ -159,7 +159,6 @@ class CharactersScreen extends StatelessWidget {
                               'neighbors and delivery people'
                           ? BoxFit.contain
                           : BoxFit.fill),
-                      // fit: BoxFit.fill,
                     ),
                   ),
                 ),
