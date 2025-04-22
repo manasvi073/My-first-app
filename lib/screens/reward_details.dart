@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:scary_teacher2/constant/appappbar.dart';
 import 'package:scary_teacher2/constant/color_constant.dart';
 import 'package:scary_teacher2/constant/image_constant.dart';
+import 'package:scary_teacher2/controller/home_controller.dart';
 import 'package:scary_teacher2/models/reward_model.dart';
 import 'package:scary_teacher2/screens/spin_details_screen.dart';
 
@@ -15,7 +18,8 @@ class RewardDetails extends StatefulWidget {
 }
 
 class _RewardDetailsState extends State<RewardDetails> {
-  int? selectedIndex;
+  final HomeController homeController = Get.put(HomeController());
+
   List<RewardData> rewardList = [];
 
   @override
@@ -23,19 +27,6 @@ class _RewardDetailsState extends State<RewardDetails> {
     super.initState();
     rewardList = widget.rewardData.data ?? [];
   }
-
-  /*final List<Map<String, dynamic>> rewardList = [
-    {
-      'title': 'Characters',
-      'image': ImageConstant.appcharacter,
-      'screen': const SpinCharacterScreen(),
-    },
-    {
-      'title': 'Weapons',
-      'image': ImageConstant.appweaponsgroup,
-      'screen': const SpinCharacterScreen(),
-    },
-  ];*/
 
   @override
   Widget build(BuildContext context) {
@@ -55,11 +46,9 @@ class _RewardDetailsState extends State<RewardDetails> {
               // const SizedBox(height: 20),
               Expanded(
                 child: rewardList.isEmpty
-                    ? const Center(
-                        child: CircularProgressIndicator(
-                          color: ColorConstant.appWhite,
-                        ),
-                      )
+                    ? Center(
+                        child: LoadingAnimationWidget.hexagonDots(
+                            color: ColorConstant.appWhite, size: 24))
                     : ListView.builder(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         itemCount: rewardList.length,
@@ -67,12 +56,13 @@ class _RewardDetailsState extends State<RewardDetails> {
                         itemBuilder: (context, index) {
                           final rewards = rewardList[index];
 
-                          bool isSelected = selectedIndex == index;
+                          bool isSelected =
+                              homeController.selectedIndex.value == index;
 
                           return GestureDetector(
                             onTap: () {
                               setState(() {
-                                selectedIndex = index;
+                                homeController.selectedIndex.value = index;
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -123,7 +113,6 @@ class _RewardDetailsState extends State<RewardDetails> {
                                     ),
                                   ),
                                   ClipRRect(
-
                                     child: Align(
                                       alignment: Alignment.centerLeft,
                                       widthFactor: 0.9,

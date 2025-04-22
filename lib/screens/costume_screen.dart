@@ -1,12 +1,10 @@
-import 'dart:convert';
-import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:get_storage/get_storage.dart';
-import 'package:scary_teacher2/constant/appappbar.dart';
+import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:scary_teacher2/constant/appAppbar.dart';
 import 'package:scary_teacher2/constant/color_constant.dart';
 import 'package:scary_teacher2/constant/image_constant.dart';
-import 'package:scary_teacher2/models/costume_model.dart';
+import 'package:scary_teacher2/controller/home_controller.dart';
 import 'package:scary_teacher2/screens/costume_details.dart';
 
 class CostumeScreen extends StatefulWidget {
@@ -17,11 +15,14 @@ class CostumeScreen extends StatefulWidget {
 }
 
 class _CostumeScreenState extends State<CostumeScreen> {
-  int? selectedIndex;
+  final HomeController homeController = Get.put(HomeController());
+
+  /*int? selectedIndex;
   List<CostumeModel> costumeList = [];
   final box = GetStorage();
-  List<String> favoriteCharacters = [];
+  List<String> favoriteCharacters = [];*/
 
+  /*
   @override
   void initState() {
     super.initState();
@@ -88,6 +89,7 @@ class _CostumeScreenState extends State<CostumeScreen> {
       log('Favorites Data -> $favorites');
     });
   }
+*/
 
   @override
   Widget build(BuildContext context) {
@@ -102,17 +104,14 @@ class _CostumeScreenState extends State<CostumeScreen> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // const SizedBox(height: 40),
-              AppAppbar(text: 'Costume'),
+              const AppAppbar(text: 'Costume'),
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
-                  child: costumeList.isEmpty
-                      ? const Center(
-                          child: CircularProgressIndicator(
-                            color: ColorConstant.appWhite,
-                          ),
-                        )
+                  child: homeController.costumeList.isEmpty
+                      ? Center(
+                          child: LoadingAnimationWidget.hexagonDots(
+                              color: ColorConstant.appWhite, size: 24))
                       : GridView.builder(
                           padding: const EdgeInsets.only(top: 5, bottom: 10),
                           gridDelegate:
@@ -122,26 +121,29 @@ class _CostumeScreenState extends State<CostumeScreen> {
                             mainAxisSpacing: 10,
                             childAspectRatio: 0.75,
                           ),
-                          itemCount: costumeList.length,
+                          itemCount: homeController.costumeList.length,
                           itemBuilder: (context, index) {
-                            final costumedata = costumeList[index];
-                            final isFavorite =
-                                favoriteCharacters.contains(costumedata.name);
+                            final costumedata =
+                                homeController.costumeList[index];
+                            final isFavorite = homeController.favoriteCharacters
+                                .contains(costumedata.name);
 
                             return GestureDetector(
                               onTap: () {
                                 setState(
                                   () {
-                                    selectedIndex = index;
+                                    homeController.selectedIndex.value = index;
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) => CostumeDetails(
                                           costumeModel: costumedata,
-                                          isFavorite: favoriteCharacters
+                                          isFavorite: homeController
+                                              .favoriteCharacters
                                               .contains(costumedata.name),
-                                          onFavoriteToggle: () =>
-                                              toggleFavorite(costumedata),
+                                          onFavoriteToggle: () => homeController
+                                              .toggleFavoriteCostume(
+                                                  costumedata),
                                         ),
                                       ),
                                     );
@@ -151,9 +153,10 @@ class _CostumeScreenState extends State<CostumeScreen> {
                               child: _buildGridItem(
                                 costumedata.image.toString(),
                                 costumedata.name ?? '',
-                                index == selectedIndex,
+                                index == homeController.selectedIndex.value,
                                 isFavorite,
-                                () => toggleFavorite(costumedata),
+                                () => homeController
+                                    .toggleFavoriteCostume(costumedata),
                               ),
                             );
                           },
@@ -176,115 +179,85 @@ class _CostumeScreenState extends State<CostumeScreen> {
   ) {
     return Padding(
       padding: const EdgeInsets.all(4),
-      child: Container(
-        decoration: BoxDecoration(
-          color: /* isSelected
-              ? ColorConstant.appWhite.withOpacity(0.9)
-              :*/
-              isFavorite
-                  ? ColorConstant.appWhite
-                  : ColorConstant.appWhite.withOpacity(0.3),
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: [
-            isSelected || isFavorite
-                ? BoxShadow(
-                    blurRadius: 15,
-                    color: ColorConstant.appBlack.withOpacity(0.1),
-                    spreadRadius: 0,
-                    offset: const Offset(0, 7),
-                  )
-                : const BoxShadow(
-                    color: Colors.transparent,
-                  ),
-          ],
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: Text(
-                      title.toUpperCase(),
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w700,
-                        fontFamily: 'alexandriaFontBold',
-                        color: /* isSelected
+      child: Obx(() {
+        final isFav = homeController.favoriteCharacters.contains(title);
+        return Container(
+          decoration: BoxDecoration(
+            color: isFav
+                ? ColorConstant.appWhite
+                : ColorConstant.appWhite.withOpacity(0.3),
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: [
+              isSelected || isFav
+                  ? BoxShadow(
+                      blurRadius: 15,
+                      color: ColorConstant.appBlack.withOpacity(0.1),
+                      spreadRadius: 0,
+                      offset: const Offset(0, 7),
+                    )
+                  : const BoxShadow(
+                      color: Colors.transparent,
+                    ),
+            ],
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Text(
+                        title.toUpperCase(),
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w700,
+                          fontFamily: 'alexandriaFontBold',
+                          color: /* isSelected
                             ? ColorConstant.appBlack
                             : */
-                            isFavorite
-                                ? ColorConstant.appBlack
-                                : ColorConstant.appWhite,
+                              isFav
+                                  ? ColorConstant.appBlack
+                                  : ColorConstant.appWhite,
+                        ),
                       ),
                     ),
-                  ),
-                  /* IconButton(
-                    icon: Icon(
-                      Icons.favorite_rounded,
-                      color: isFavorite
-                          ? ColorConstant.appRed
-                          : ColorConstant.appWhite.withOpacity(0.6),
-                      size: 24,
+                    GestureDetector(
+                      onTap: onFavoritePressed,
+                      child: Icon(
+                        Icons.favorite_rounded,
+                        color: isFav
+                            ? ColorConstant.appRed
+                            : ColorConstant.appWhite.withOpacity(0.6),
+                        size: 24,
+                      ),
                     ),
-                    onPressed: onFavoritePressed,
-                  ),*/
-                  GestureDetector(
-                    onTap: onFavoritePressed,
-                    child: Icon(
-                      Icons.favorite_rounded,
-                      color: isFavorite
-                          ? ColorConstant.appRed
-                          : ColorConstant.appWhite.withOpacity(0.6),
-                      size: 24,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              child: ClipRRect(
-                borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20),
-                ),
-                child: AspectRatio(
-                  aspectRatio: 1.0,
-                  child: Image.asset(
-                    imagePath,
-                    // width: 150,
-                    // width: 146,
-                    fit: BoxFit.cover,
-                  ),
+                  ],
                 ),
               ),
-            ),
-            /*Expanded(
-              child: ClipRRect(
-                borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20),
-                ),
-                child: AspectRatio(
-                  aspectRatio: 1.0,
-                  child: Center(
+              Expanded(
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(20),
+                    bottomRight: Radius.circular(20),
+                  ),
+                  child: AspectRatio(
+                    aspectRatio: 1.0,
                     child: Image.asset(
                       imagePath,
-                      // width: 150,
-                      // width: 146,
                       fit: BoxFit.cover,
                     ),
                   ),
                 ),
               ),
-            ),*/
-          ],
-        ),
-      ),
+            ],
+          ),
+        );
+      }),
     );
   }
 }

@@ -3,13 +3,7 @@ import 'package:get/get.dart';
 import 'package:scary_teacher2/constant/color_constant.dart';
 import 'package:scary_teacher2/constant/image_constant.dart';
 import 'package:scary_teacher2/controller/home_controller.dart';
-import 'package:scary_teacher2/screens/chapters_screen.dart';
-import 'package:scary_teacher2/screens/characters_screen.dart';
-import 'package:scary_teacher2/screens/costume_screen.dart';
-import 'package:scary_teacher2/screens/hedden_secret_screen.dart';
-import 'package:scary_teacher2/screens/rewards_screen.dart';
 import 'package:scary_teacher2/screens/setting_screen.dart';
-import 'package:scary_teacher2/screens/weapons_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

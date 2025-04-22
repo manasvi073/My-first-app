@@ -1,12 +1,15 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:scary_teacher2/constant/image_constant.dart';
 import 'package:scary_teacher2/models/chapter_model.dart';
 import 'package:scary_teacher2/models/character_model.dart';
+import 'package:scary_teacher2/models/costume_model.dart';
 import 'package:scary_teacher2/models/hedden_secret_model.dart';
+import 'package:scary_teacher2/models/reward_model.dart';
 import 'package:scary_teacher2/models/weapons_model.dart';
 import 'package:scary_teacher2/screens/chapters_screen.dart';
 import 'package:scary_teacher2/screens/characters_screen.dart';
@@ -17,12 +20,17 @@ import 'package:scary_teacher2/screens/weapons_screen.dart';
 
 class HomeController extends GetxController {
   // int? selectedIndex;
+
   RxInt selectedIndex = (-1).obs;
 
   var characterList = <CharacterModel>[].obs;
   var weaponsList = <WeaponsModel>[].obs;
   var chapterList = <ChaptersModel>[].obs;
-  var heddensecretList=<HeddensecretModel>[].obs;
+  var heddensecretList = <HeddensecretModel>[].obs;
+  var rewardList = <RewardModel>[].obs;
+  var costumeList = <CostumeModel>[].obs;
+
+  // var rewardListData=<RewardData>[].obs;
 
   final box = GetStorage();
   var favoriteCharacters = <String>[].obs;
@@ -34,7 +42,10 @@ class HomeController extends GetxController {
     loadWeapons();
     loadChapters();
     loadheddendata();
+    loadRewardData();
+    loadCostumeData();
     loadFavorites();
+    // rewardListData = widget.rewardData.data ?? [];
   }
 
   void onItemTap(int index) {
@@ -221,16 +232,70 @@ class HomeController extends GetxController {
   Future<void> loadheddendata() async {
     try {
       final String response =
-      await rootBundle.loadString('assets/json/hedden_secrets.json');
+          await rootBundle.loadString('assets/json/hedden_secrets.json');
       log("JSON Data Loaded: $response");
       final List<dynamic> data = json.decode(response);
 
-        heddensecretList.value =
-            data.map((json) => HeddensecretModel.fromJson(json)).toList();
-
+      heddensecretList.value =
+          data.map((json) => HeddensecretModel.fromJson(json)).toList();
     } catch (e) {
       log('Error loading JSON: $e');
     }
   }
 
+// ..............Rewards screen..................
+
+  Future<void> loadRewardData() async {
+    try {
+      final String response =
+          await rootBundle.loadString('assets/json/rewards.json');
+      final List<dynamic> data = json.decode(response);
+
+      rewardList.value =
+          data.map((json) => RewardModel.fromJson(json)).toList();
+    } catch (e) {
+      Fluttertoast.showToast(msg: 'Error loading JSON: $e');
+    }
+  }
+
+//   ................Costume screen.................
+
+  Future<void> loadCostumeData() async {
+    try {
+      final String response =
+          await rootBundle.loadString('assets/json/costumes.json');
+      log("JSON Data Loaded: $response");
+      final List<dynamic> data = json.decode(response);
+
+      costumeList.value =
+          data.map((json) => CostumeModel.fromJson(json)).toList();
+    } catch (e) {
+      log('Error loading JSON: $e');
+    }
+  }
+
+  void toggleFavoriteCostume(CostumeModel costumeFav) {
+    Map<String, dynamic> favoriteItem = {
+      "name": costumeFav.name,
+      "image": costumeFav.image,
+    };
+
+    List<Map<String, dynamic>> favorites =
+        (box.read<List<dynamic>>('favorites') ?? [])
+            .map((e) => Map<String, dynamic>.from(e))
+            .toList();
+
+    int index = favorites.indexWhere((item) => item['name'] == costumeFav.name);
+
+    if (index != -1) {
+      favorites.removeAt(index);
+      favoriteCharacters.remove(costumeFav.name);
+    } else {
+      favorites.add(favoriteItem);
+      favoriteCharacters.add(costumeFav.name!);
+    }
+
+    box.write('favorites', favorites);
+    log('Favorites Data -> $favorites');
+  }
 }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:scary_teacher2/constant/appappbar.dart';
+import 'package:get/get.dart';
+import 'package:scary_teacher2/constant/appAppbar.dart';
 import 'package:scary_teacher2/constant/color_constant.dart';
 import 'package:scary_teacher2/constant/image_constant.dart';
+import 'package:scary_teacher2/controller/home_controller.dart';
 import 'package:scary_teacher2/models/chapter_model.dart';
 import 'package:scary_teacher2/screens/chapter_sub_detail.dart';
 
@@ -15,7 +17,7 @@ class ChapterDetailScreen extends StatefulWidget {
 }
 
 class _ChapterDetailScreenState extends State<ChapterDetailScreen> {
-  int? selectedIndex;
+  final HomeController homeController = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +35,7 @@ class _ChapterDetailScreenState extends State<ChapterDetailScreen> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // const SizedBox(height: 40),
-              AppAppbar(
-                  text: widget.chaptersModel.name?.toUpperCase() ?? ''),
+              AppAppbar(text: widget.chaptersModel.name?.toUpperCase() ?? ''),
               Expanded(
                 child: ListView.builder(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -43,12 +43,13 @@ class _ChapterDetailScreenState extends State<ChapterDetailScreen> {
                   itemBuilder: (context, index) {
                     final details = chapterDetails[index];
 
-                    bool isSelected = selectedIndex == index;
+                    bool isSelected =
+                        homeController.selectedIndex.value == index;
 
                     return GestureDetector(
                       onTap: () {
                         setState(() {
-                          selectedIndex = index;
+                          homeController.selectedIndex.value = index;
                         });
                         Navigator.push(
                           context,

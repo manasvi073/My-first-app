@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:scary_teacher2/constant/appappbar.dart';
+import 'package:scary_teacher2/constant/appAppbar.dart';
 import 'package:scary_teacher2/constant/color_constant.dart';
 import 'package:scary_teacher2/constant/image_constant.dart';
 import 'package:scary_teacher2/models/chapter_model.dart';
@@ -21,7 +21,6 @@ class ChapterSubDetail extends StatelessWidget {
           ),
           Column(
             children: [
-              // const SizedBox(height: 40),
               AppAppbar(text: chapterDetail.name!.toUpperCase()),
               Expanded(
                 child: SingleChildScrollView(

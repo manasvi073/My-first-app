@@ -1,16 +1,10 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:scary_teacher2/constant/appappbar.dart';
+import 'package:scary_teacher2/constant/appAppbar.dart';
 import 'package:scary_teacher2/constant/color_constant.dart';
 import 'package:scary_teacher2/constant/image_constant.dart';
 import 'package:scary_teacher2/controller/home_controller.dart';
-import 'dart:convert';
-import 'package:scary_teacher2/models/character_model.dart';
 import 'package:scary_teacher2/screens/characters_details_screen.dart';
 
 class CharactersScreen extends StatefulWidget {
@@ -97,13 +91,7 @@ class _CharactersScreenState extends State<CharactersScreen> {
 
   @override
   Widget build(BuildContext context) {
-/*
 
-     String userType = 'neighbors and delivery people';
-    int crossAxisCount = userType == 'Neighbors and Delivery People' ? 1 : 2;
-    double childAspectRatio =
-        userType == 'Neighbors and Delivery People' ? 1.35 : 0.75;
-*/
     return Scaffold(
       body: Stack(
         fit: StackFit.expand,

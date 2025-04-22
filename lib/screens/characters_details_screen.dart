@@ -4,7 +4,6 @@ import 'package:scary_teacher2/constant/color_constant.dart';
 import 'package:scary_teacher2/constant/image_constant.dart';
 import 'package:scary_teacher2/models/character_model.dart';
 
-
 class CharactersDetailsScreen extends StatefulWidget {
   final CharacterModel character;
   final bool isFavorite;
@@ -50,7 +49,6 @@ class _CharactersDetailsScreenState extends State<CharactersDetailsScreen> {
           ),
           Column(
             children: [
-              //const SizedBox(height: 40),
               AppAppbar(text: widget.character.name!),
               Expanded(
                 child: SingleChildScrollView(
@@ -58,7 +56,6 @@ class _CharactersDetailsScreenState extends State<CharactersDetailsScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // const SizedBox(height: 20),
                       Center(
                         child: Container(
                           width: 250,

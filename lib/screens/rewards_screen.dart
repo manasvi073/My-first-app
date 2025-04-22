@@ -1,11 +1,10 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:scary_teacher2/constant/appappbar.dart';
+import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:scary_teacher2/constant/appAppbar.dart';
 import 'package:scary_teacher2/constant/color_constant.dart';
 import 'package:scary_teacher2/constant/image_constant.dart';
-import 'package:scary_teacher2/models/reward_model.dart';
+import 'package:scary_teacher2/controller/home_controller.dart';
 import 'package:scary_teacher2/screens/reward_details.dart';
 import 'package:scary_teacher2/screens/scratchcard_screen.dart';
 
@@ -17,31 +16,10 @@ class RewardsScreen extends StatefulWidget {
 }
 
 class _RewardsScreenState extends State<RewardsScreen> {
+  final HomeController homeController = Get.put(HomeController());
+
+/*
   int? selectedIndex;
-
-  /*List<RewardModel> rewardList = [];
-
-  @override
-  void initState() {
-    super.initState();
-    rewardData();
-  }
-
-  Future<void> rewardData() async {
-    try {
-      final String response =
-          await rootBundle.loadString('assets/json/rewards.json');
-      log("JSON Data Loaded: $response");
-      final List<dynamic> data = json.decode(response);
-      setState(() {
-        rewardList = data.map((json) => RewardModel.fromJson(json)).toList();
-      });
-    } catch (e) {
-      log('Error loading JSON: $e');
-    }
-  }
-*/
-
   List<RewardModel> rewardList = [];
 
   @override
@@ -62,20 +40,7 @@ class _RewardsScreenState extends State<RewardsScreen> {
       Fluttertoast.showToast(msg: 'Error loading JSON: $e');
     }
   }
-
-  /*final List<Map<String, dynamic>> rewardList = [
-    {
-      'title': 'Spin & Win',
-      'image': ImageConstant.appspin,
-      'screen': SpinwinScreen(),
-    },
-    {
-      'title': 'Scratch Card',
-      'image': ImageConstant.appscratchcard,
-      'screen': ScratchcardScreen(),
-    },
-  ];*/
-
+*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,29 +54,27 @@ class _RewardsScreenState extends State<RewardsScreen> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // const SizedBox(height: 40),
-              AppAppbar(text: 'Rewards'),
-              // const SizedBox(height: 20),
+              const AppAppbar(text: 'Rewards'),
               Expanded(
-                child: rewardList.isEmpty
-                    ? const Center(
-                        child: CircularProgressIndicator(
-                          color: ColorConstant.appWhite,
-                        ),
-                      )
+                child: homeController.rewardList.isEmpty
+                    ? Center(
+                        child: LoadingAnimationWidget.hexagonDots(
+                            color: ColorConstant.appWhite, size: 24))
                     : ListView.builder(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
-                        itemCount: rewardList.length,
+                        itemCount: homeController.rewardList.length,
                         itemBuilder: (context, index) {
-                          final rewards = rewardList[index];
+                          final rewards = homeController.rewardList[index];
 
-                          bool isSelected = selectedIndex == index;
+                          bool isSelected =
+                              homeController.selectedIndex.value == index;
 
                           return GestureDetector(
                             onTap: () {
                               setState(() {
-                                selectedIndex = index;
-                                if (rewardList[index].name == "Spin & Win") {
+                                homeController.selectedIndex.value = index;
+                                if (homeController.rewardList[index].name ==
+                                    "Spin & Win") {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
