@@ -66,15 +66,20 @@ class _SettingScreenState extends State<SettingScreen> {
                   padding: const EdgeInsets.all(15),
                   itemCount: homeController.settingsOptions.length,
                   itemBuilder: (context, index) {
-                    bool isSelected = index == homeController.selectedIndex.value;
+                    bool isSelected =
+                        index == homeController.selectedIndex.value;
                     return GestureDetector(
                       onTap: () {
                         setState(
                           () {
                             homeController.selectedIndex.value = index;
-                            if (homeController.settingsOptions[index]['isToggle'] == true) {
-                              homeController.isNotificationOn = !homeController.isNotificationOn;
-                            } else if (homeController.settingsOptions[index]['title'] ==
+                            if (homeController.settingsOptions[index]
+                                    ['isToggle'] ==
+                                true) {
+                              homeController.isNotificationOn =
+                                  !homeController.isNotificationOn;
+                            } else if (homeController.settingsOptions[index]
+                                    ['title'] ==
                                 'Favorites') {
                               Navigator.push(
                                 context,
@@ -82,7 +87,8 @@ class _SettingScreenState extends State<SettingScreen> {
                                   builder: (context) => FavoriteScreen(),
                                 ),
                               );
-                            } else if (homeController.settingsOptions[index]['title'] ==
+                            } else if (homeController.settingsOptions[index]
+                                    ['title'] ==
                                 'Privacy Policy') {
                               Navigator.push(
                                 context,
@@ -132,7 +138,8 @@ class _SettingScreenState extends State<SettingScreen> {
                                 const Padding(
                                     padding: EdgeInsets.only(left: 5)),
                                 Text(
-                                 homeController.settingsOptions[index]['title'].toUpperCase(),
+                                  homeController.settingsOptions[index]['title']
+                                      .toUpperCase(),
                                   style: TextStyle(
                                     fontFamily: 'alexandriaFontBold',
                                     fontSize: 14,
@@ -144,14 +151,16 @@ class _SettingScreenState extends State<SettingScreen> {
                                 ),
                               ],
                             ),
-                            if (homeController.settingsOptions[index]['isToggle'] == true)
+                            if (homeController.settingsOptions[index]
+                                    ['isToggle'] ==
+                                true)
                               Container(
                                 width: 55,
                                 height: 30,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(100),
                                   border: Border.all(
-                                    color:homeController.isNotificationOn
+                                    color: homeController.isNotificationOn
                                         ? ColorConstant.appSkyBlue
                                         : Colors.grey,
                                     width: 5,
@@ -161,7 +170,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                   value: homeController.isNotificationOn,
                                   onChanged: (value) {
                                     setState(() {
-                                     homeController.isNotificationOn = value;
+                                      homeController.isNotificationOn = value;
                                     });
                                   },
                                   activeColor: ColorConstant.appgreen,

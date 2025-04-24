@@ -89,4 +89,5 @@ class ImageConstant {
   static const String appRate = '${_iconsPath}rate.png';
   static const String appShare = '${_iconsPath}share.png';
   static const String appPrivacy = '${_iconsPath}privacy.png';
+  static const String appSpinArrow = '${_iconsPath}spin_arrow.png';
 }
