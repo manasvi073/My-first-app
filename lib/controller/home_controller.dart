@@ -56,7 +56,7 @@ class HomeController extends GetxController {
     Get.to(screenData);
   }
 
-  // ..................onboarding Screen.............
+// ========================================== onboarding Screen ==========================================
 
   final List<Map<String, String>> onboardingData = [
     {
@@ -91,7 +91,7 @@ class HomeController extends GetxController {
     }
   }
 
-  // ..............Setting Screen......................
+// ========================================== Setting Screen ==========================================
 
   final List<Map<String, dynamic>> settingsOptions = [
     {
@@ -117,7 +117,7 @@ class HomeController extends GetxController {
     }
   ];
 
-  // ................Home Screen Data...................
+//========================================== Home Screen Data ==========================================
 
   final List<Map<String, dynamic>> items = [
     {
@@ -152,7 +152,7 @@ class HomeController extends GetxController {
     },
   ];
 
-  // ................Characters Screen...................
+// ========================================== Characters Screen ==========================================
 
   Future<void> loadCharacters() async {
     try {
@@ -208,7 +208,7 @@ class HomeController extends GetxController {
     log('Favorites Data -> $favorites');
   }
 
-  // ................Weapons Screen...................
+// ========================================== Weapons Screen ==========================================
 
   Future<void> loadWeapons() async {
     try {
@@ -249,7 +249,7 @@ class HomeController extends GetxController {
     log('Favorites Data -> $favorites');
   }
 
-// ................chapters Screen...................
+// ========================================== chapters Screen ==========================================
 
   Future<void> loadChapters() async {
     try {
@@ -290,7 +290,7 @@ class HomeController extends GetxController {
     log('Favorites Data -> $favorites');
   }
 
-//   ..............Hedden secret screen....................
+//  =========================================== Hedden secret screen ===========================================
 
   Future<void> loadheddendata() async {
     try {
@@ -306,7 +306,7 @@ class HomeController extends GetxController {
     }
   }
 
-// ..............Rewards screen..................
+// =========================================== Rewards screen ===========================================
 
   Future<void> loadRewardData() async {
     try {
@@ -321,7 +321,7 @@ class HomeController extends GetxController {
     }
   }
 
-//   ................Costume screen.................
+// =========================================== Costume screen ===========================================
 
   Future<void> loadCostumeData() async {
     try {
