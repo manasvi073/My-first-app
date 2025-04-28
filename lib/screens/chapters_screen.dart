@@ -18,80 +18,6 @@ class ChaptersScreen extends StatefulWidget {
 class _ChaptersScreenState extends State<ChaptersScreen> {
   final HomeController homeController = Get.put(HomeController());
 
-  // int? selectedIndex;
-  // List<ChaptersModel> chapterList = [];
-  // final box = GetStorage();
-  // List<String> favoriteCharacters = [];
-
-  @override
-  void initState() {
-    super.initState();
-    // loadChapters();
-    // loadFavorites();
-  }
-
-  /* Future<void> loadChapters() async {
-    try {
-      final String response =
-          await rootBundle.loadString('assets/json/chapters.json');
-      log("JSON Data Loaded: $response");
-      final List<dynamic> data = json.decode(response);
-      setState(() {
-        chapterList = data.map((json) => ChaptersModel.fromJson(json)).toList();
-      });
-    } catch (e) {
-      log('Error loading JSON: $e');
-    }
-  }*/
-
-  /*void loadFavorites() {
-    List<dynamic>? storedFavorites = box.read<List<dynamic>>('favorites');
-
-    if (storedFavorites != null) {
-      favoriteCharacters = storedFavorites.map((e) {
-        if (e is Map<String, dynamic>) {
-          return e['name'] as String;
-        } else if (e is String) {
-          return e;
-        }
-        return '';
-      }).toList();
-    } else {
-      favoriteCharacters = [];
-    }
-    setState(() {});
-  }
-*/
-
-/*
-  void toggleFavorite(ChaptersModel chapter) {
-    Map<String, dynamic> favoriteItem = {
-      "name": chapter.name,
-      "image": chapter.image,
-    };
-
-    List<Map<String, dynamic>> favorites =
-        (box.read<List<dynamic>>('favorites') ?? [])
-            .map((e) => Map<String, dynamic>.from(e))
-            .toList();
-
-    int index = favorites.indexWhere((item) => item['name'] == chapter.name);
-
-    setState(() {
-      if (index != -1) {
-        favorites.removeAt(index);
-        favoriteCharacters.remove(chapter.name);
-      } else {
-        favorites.add(favoriteItem);
-        favoriteCharacters.add(chapter.name!);
-      }
-
-      box.write('favorites', favorites);
-      log('Favorites Data -> $favorites');
-    });
-  }
-*/
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -105,7 +31,6 @@ class _ChaptersScreenState extends State<ChaptersScreen> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // const SizedBox(height: 40),
               const AppAppbar(text: 'chapters'),
               Expanded(
                 child: Padding(
@@ -154,8 +79,6 @@ class _ChaptersScreenState extends State<ChaptersScreen> {
                                     );
                                   },
                                   child: _buildGridItem(
-                                    /*items[index]['image']!,
-                                  items[index]['title']!,*/
                                     chapterdata.image.toString(),
                                     chapterdata.name!.toUpperCase(),
                                     index == homeController.selectedIndex.value,
@@ -188,7 +111,6 @@ class _ChaptersScreenState extends State<ChaptersScreen> {
       padding: const EdgeInsets.all(4),
       child: Obx(
         () {
-
           return Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
@@ -212,7 +134,7 @@ class _ChaptersScreenState extends State<ChaptersScreen> {
                   imagePath,
                   fit: BoxFit.cover,
                 ),
-                Obx((){
+                Obx(() {
                   return Positioned(
                     top: 12,
                     right: 12,
@@ -228,20 +150,6 @@ class _ChaptersScreenState extends State<ChaptersScreen> {
                     ),
                   );
                 }),
-               /* Positioned(
-                  top: 2,
-                  right: 2,
-                  child: IconButton(
-                    icon: Icon(
-                      Icons.favorite_rounded,
-                      color: homeController.favoriteCharacters.contains(title)
-                          ? ColorConstant.appRed
-                          : ColorConstant.appWhite.withOpacity(0.6),
-                      size: 24,
-                    ),
-                    onPressed: onFavoritePressed,
-                  ),
-                ),*/
                 Positioned(
                   bottom: 10,
                   right: 5,
@@ -257,7 +165,8 @@ class _ChaptersScreenState extends State<ChaptersScreen> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
                           border: Border.all(
-                            color: homeController.favoriteCharacters.contains(title)
+                            color: homeController.favoriteCharacters
+                                    .contains(title)
                                 ? ColorConstant.appWhite
                                 : ColorConstant.appWhite.withOpacity(0.5),
                             style: BorderStyle.solid,
@@ -280,7 +189,8 @@ class _ChaptersScreenState extends State<ChaptersScreen> {
                             title.toUpperCase(),
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              color: homeController.favoriteCharacters.contains(title)
+                              color: homeController.favoriteCharacters
+                                      .contains(title)
                                   ? ColorConstant.appBlack
                                   : ColorConstant.appWhite,
                               fontWeight: FontWeight.w700,

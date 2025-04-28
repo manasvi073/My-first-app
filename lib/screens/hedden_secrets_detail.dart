@@ -121,8 +121,6 @@ class _HeddensecretsDetailState extends State<HeddensecretsDetail> {
                       ),
                       const SizedBox(height: 30),
                       Container(
-                        // height: 200,
-                        // width: 320,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           border: Border.all(

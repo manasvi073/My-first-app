@@ -143,10 +143,9 @@ class _CostumeScreenState extends State<CostumeScreen> {
                           fontSize: 14,
                           fontWeight: FontWeight.w700,
                           fontFamily: 'alexandriaFontBold',
-                          color:
-                              isFav
-                                  ? ColorConstant.appBlack
-                                  : ColorConstant.appWhite,
+                          color: isFav
+                              ? ColorConstant.appBlack
+                              : ColorConstant.appWhite,
                         ),
                       ),
                     ),

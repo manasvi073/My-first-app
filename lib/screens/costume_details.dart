@@ -48,7 +48,7 @@ class _CostumeDetailsState extends State<CostumeDetails> {
           ),
           Column(
             children: [
-              // const SizedBox(height: 40),
+
               AppAppbar(text: widget.costumeModel.name!),
               Expanded(
                 child: SingleChildScrollView(

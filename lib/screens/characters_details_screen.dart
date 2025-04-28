@@ -123,8 +123,6 @@ class _CharactersDetailsScreenState extends State<CharactersDetailsScreen> {
                         children: [
                           Image.asset(
                             ImageConstant.appstats,
-                            // width: double.infinity,
-                            // fit: BoxFit.cover,
                           ),
                           Positioned(
                             top: 20,

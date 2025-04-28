@@ -48,7 +48,6 @@ class _WeaponsDetailScreenState extends State<WeaponsDetailScreen> {
           ),
           Column(
             children: [
-              // const SizedBox(height: 40),
               AppAppbar(text: widget.weapons.name!),
               Expanded(
                 child: SingleChildScrollView(
@@ -115,8 +114,6 @@ class _WeaponsDetailScreenState extends State<WeaponsDetailScreen> {
                         children: [
                           Image.asset(
                             ImageConstant.appstats,
-                            /* width: double.infinity,
-                            fit: BoxFit.cover,*/
                           ),
                           Positioned(
                             top: 20,

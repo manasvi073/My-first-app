@@ -91,7 +91,6 @@ class _ChapterDetailScreenState extends State<ChapterDetailScreen> {
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(10),
                                   child: Image.asset(
-                                    // troubledwaters['image']!,
                                     details.image.toString(),
                                     height: 80,
                                     width: 80,
@@ -106,7 +105,6 @@ class _ChapterDetailScreenState extends State<ChapterDetailScreen> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        // troubledwaters['title']!.toUpperCase(),
                                         details.name?.toUpperCase() ?? '',
                                         style: TextStyle(
                                           color: isSelected
@@ -142,12 +140,9 @@ class _ChapterDetailScreenState extends State<ChapterDetailScreen> {
                                           const SizedBox(width: 10),
                                           Expanded(
                                             child: Text(
-                                              // troubledwaters['description']!
-                                              //     .toUpperCase(),
                                               details.description
                                                       ?.toUpperCase() ??
                                                   '',
-
                                               textAlign: TextAlign.start,
                                               style: TextStyle(
                                                 color: isSelected

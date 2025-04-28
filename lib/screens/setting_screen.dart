@@ -17,35 +17,6 @@ class SettingScreen extends StatefulWidget {
 class _SettingScreenState extends State<SettingScreen> {
   final HomeController homeController = Get.put(HomeController());
 
-  // int? selectedIndex;
-  /* bool isNotificationOn = true;
-
-  final List<Map<String, dynamic>> settingsOptions = [
-    {
-      'icon': ImageConstant.appNotifications,
-      'title': 'Notifications',
-      'isToggle': true,
-    },
-    {
-      'icon': ImageConstant.appFavorite,
-      'title': 'Favorites',
-      // 'screen': const FavoriteScreen(),
-    },
-    {
-      'icon': ImageConstant.appShare,
-      'title': 'Share Us',
-    },
-    {
-      'icon': ImageConstant.appRate,
-      'title': 'Rate Us',
-    },
-    {
-      'icon': ImageConstant.appPrivacy,
-      'title': 'Privacy Policy',
-    }
-  ];
-*/
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,7 +30,6 @@ class _SettingScreenState extends State<SettingScreen> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // const SizedBox(height: 40),
               const AppAppbar(text: 'settings'),
               Expanded(
                 child: ListView.builder(
@@ -117,7 +87,6 @@ class _SettingScreenState extends State<SettingScreen> {
                                     color:
                                         ColorConstant.appBlack.withOpacity(0.1),
                                     spreadRadius: 0,
-                                    // blurStyle: BlurStyle.normal,
                                     offset: const Offset(0, 7),
                                   )
                                 : const BoxShadow(
