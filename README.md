@@ -1,17 +1,37 @@
-# scary_teacher2
+# Scary Teacher App
 
-A new Flutter project.
+A fun and spooky mobile application inspired by the "Scary Teacher" concept. Developed using Flutter, this app features an engaging UI, character interactions.
 
-## Getting Started
+## ✨ Features
 
-This project is a starting point for a Flutter application.
+ 🎮 Interactive horror-style gameplay
+- 🎭 Funny and spooky teacher character
+- 🎯 Mini games or pranks
+- youtube Player
+- 📱 Built using Flutter for Android & iOS
 
-A few resources to get you started if this is your first Flutter project:
+🛠️ Technologies Used
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- Flutter
+- state management
+  -  GetX 
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-"# My-first-app" 
+
+## 📲 Installation
+
+1. Clone the repo:
+
+   ```bash
+   git clone https://github.com/your-username/scary-teacher-app.git
+   cd scary-teacher-app
+
+2. Install dependencies:
+
+   ```bash
+   flutter pub get
+   
+3. Run the App
+
+   ```bash
+   flutter run
+
