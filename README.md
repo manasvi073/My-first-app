@@ -22,7 +22,7 @@ A fun and spooky mobile application inspired by the "Scary Teacher" concept. Dev
 1. Clone the repo:
 
    ```bash
-   git clone https://github.com/your-username/scary-teacher-app.git
+   git clone https://github.com/Manasvi-Munjani/scary-teacher-app.git
    cd scary-teacher-app
 
 2. Install dependencies:
